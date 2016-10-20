@@ -3,9 +3,9 @@ import warnings
 warnings.filterwarnings("ignore")
 
 
-def leer_tabla():
+def leer_tabla(nombre_archivo):
     """lee la tabla"""
-    df = pd.read_table("Variants.tab", encoding = "ISO-8859-1")
+    df = pd.read_table(nombre_archivo, encoding = "ISO-8859-1")
 
     df.replace(".",0, inplace=True)
     return df
@@ -58,7 +58,7 @@ def generar_excel(df_filter):
     df_filter.to_excel("Filtros.xls")
 
 if __name__ == "__main__":
-    df = leer_tabla()
+    df = leer_tabla("Variants.tab")
     transformar_columnas(df)
     df = primer_filtrado(df)
     df_3 = segundo_filtrado(df)
