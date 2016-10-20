@@ -42,3 +42,5 @@ df_missense = df_filter[(df_filter["CADD_phred"] >= 17)&
     (df_filter["GERP++_RS"] >= 2)&
     (df_filter["DANN_score"]>0.995)&
     (df_filter["DANN_score"] < 1)]
+
+df_filter.to_excel("Filtros.xls")
