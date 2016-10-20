@@ -54,12 +54,13 @@ def segundo_filtrado(df_filter):
 
     return [df_stopgain, df_splicing, df_missense]
 
-def generar_excel():
+def generar_excel(df_filter):
     df_filter.to_excel("Filtros.xls")
 
 if __name__ == "__main__":
     df = leer_tabla()
     transformar_columnas(df)
     df = primer_filtrado(df)
-    df = segundo_filtrado(df)
-    print (df)
+    df_3 = segundo_filtrado(df)
+
+    generar_excel(df)   
