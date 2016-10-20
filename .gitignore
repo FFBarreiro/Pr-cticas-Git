@@ -3,3 +3,5 @@
 Variants.tab
 
 *.xls
+
+__pycache__
