@@ -1,4 +1,6 @@
 import pandas as pd
+#from tkinter.filedialog import askopenfilename
+import sys
 import warnings
 warnings.filterwarnings("ignore")
 
@@ -58,7 +60,9 @@ def generar_excel(df_filter):
     df_filter.to_excel("Filtros.xls")
 
 if __name__ == "__main__":
-    df = leer_tabla("Variants.tab")
+    #nombre_de_archivo = askopenfilename()
+    nombre_de_archivo = sys.argv[1]
+    df = leer_tabla(nombre_de_archivo)
     transformar_columnas(df)
     df = primer_filtrado(df)
     df_3 = segundo_filtrado(df)
