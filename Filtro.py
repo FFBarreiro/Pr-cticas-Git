@@ -23,7 +23,7 @@ def transformar_columnas(df):
             "phyloP20way_mammalian"]
     numeric(df,columnas)
 
-def primer_filtrado():
+def primer_filtrado(df):
     df["ExonicFunc.refGene"] = df["ExonicFunc.refGene"].astype(str)
     df["ExAC_EAS"] = pd.to_numeric(df["ExAC_EAS"])
     df["ESP6500siv2_EA"] = pd.to_numeric(df["ESP6500siv2_EA"])
@@ -36,7 +36,7 @@ def primer_filtrado():
        (df["ESP6500siv2_EA"] < 0.001)]
     return df_filter
 
-def segundo_filtrado():
+def segundo_filtrado(df_filter):
     df_stopgain = df_filter[(df_filter["CADD_phred"] >= 37)&
         (df_filter["GERP++_RS"] >= 2)&
         (df_filter["DANN_score"]>0.995)&
@@ -59,3 +59,7 @@ def generar_excel():
 
 if __name__ == "__main__":
     df = leer_tabla()
+    transformar_columnas(df)
+    df = primer_filtrado(df)
+    df = segundo_filtrado(df)
+    print (df)
