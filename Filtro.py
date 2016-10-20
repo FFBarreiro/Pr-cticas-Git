@@ -27,3 +27,18 @@ df_filter = df[(~df["ExonicFunc.refGene"].str.contains("unknown")) &
    (df["PopFreqMax"] < 0.001)&
    (df["ExAC_EAS"] < 0.001)&
    (df["ESP6500siv2_EA"] < 0.001)]
+
+df_stopgain = df_filter[(df_filter["CADD_phred"] >= 37)&
+    (df_filter["GERP++_RS"] >= 2)&
+    (df_filter["DANN_score"]>0.995)&
+    (df_filter["DANN_score"] < 1)]
+
+df_splicing = df_filter[(df_filter["CADD_phred"] >= 17)&
+    (df_filter["GERP++_RS"] >= 2)&
+    (df_filter["DANN_score"]>0.995)&
+    (df_filter["DANN_score"] < 0.98)]
+
+df_missense = df_filter[(df_filter["CADD_phred"] >= 17)&
+    (df_filter["GERP++_RS"] >= 2)&
+    (df_filter["DANN_score"]>0.995)&
+    (df_filter["DANN_score"] < 1)]
