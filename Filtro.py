@@ -48,12 +48,7 @@ def filtrosXscore(df, scores):
 def segundo_filtrado(df_filter):
     df_stopgain = filtrosXscore(df_filter, [37.0, 2.0, 0.995, 1.0])
     df_splicing = filtrosXscore(df_filter, [17.0, 2.0, 0.995, 0.998])
-
-    df_missense = df_filter[(df_filter["CADD_phred"] >= 17)&
-        (df_filter["GERP++_RS"] >= 2)&
-        (df_filter["DANN_score"]>0.995)&
-        (df_filter["DANN_score"] < 1)]
-
+    df_missense = filtrosXscore(df_filter, [17.0, 2.0, 0.995, 1.0])
     return [df_stopgain, df_splicing, df_missense]
 
 def generar_excel(df_filter):
