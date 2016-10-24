@@ -1,6 +1,8 @@
 import unittest
 from pandas import DataFrame
 from numpy import array
+from Filtro import segundo_filtrado
+
 
 class test_filtrados(unittest.TestCase):
     def test_segundo_filtrado(self):

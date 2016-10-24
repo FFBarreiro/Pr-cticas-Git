@@ -38,12 +38,15 @@ def primer_filtrado(df):
        (df["ESP6500siv2_EA"] < 0.001)]
     return df_filter
 
+def filtrosXscore(df, scores):
+    """filtramos 3 columnas por scores("CADD_phred","GERP++_RS", "DANN_score")"""
+    return df[(df["CADD_phred"] >= scores[0])&
+        (df["GERP++_RS"] >= scores[1])&
+        (df["DANN_score"]> scores[2])&
+        (df["DANN_score"] < scores[3])]
+    
 def segundo_filtrado(df_filter):
-    df_stopgain = df_filter[(df_filter["CADD_phred"] >= 37)&
-        (df_filter["GERP++_RS"] >= 2)&
-        (df_filter["DANN_score"]>0.995)&
-        (df_filter["DANN_score"] < 1)]
-
+    df_stopgain = filtrosXscore(df_filter, [37.0, 2.0, 0.995, 1.0])
     df_splicing = df_filter[(df_filter["CADD_phred"] >= 17)&
         (df_filter["GERP++_RS"] >= 2)&
         (df_filter["DANN_score"]>0.995)&
